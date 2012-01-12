@@ -1,0 +1,11 @@
+JekaImageBundle
+
+While only for MongoDB
+
+Usage
+
+Add reference to your document
+
+<reference-many target-document="Jeka\ImageBundle\Document\Image" field="images"  sort="pos=desc"/>
+or
+<reference-one target-document="Jeka\ImageBundle\Document\Image" field="image"/>
