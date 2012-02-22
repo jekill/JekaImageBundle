@@ -327,4 +327,28 @@ class Image
     }
 
 
+    /**
+     * Reload image info (width, height, filesize...)
+     * @return bool
+     */
+    public function reloadInfo()
+    {
+        $types = array("gif", "jpg", "png");
+        $info = array();
+
+        if (!($info = GetImageSize($this->realFileName())))
+            return false;
+
+        if (!isset($types[$info[2] - 1]))
+            return false;
+
+        $this->setWidth($info[0]);
+        $this->setHeight($info[1]);
+
+        $this->setSize(filesize($this->realFileName()));
+
+        return true;
+    }
+
+
 }
