@@ -3,11 +3,12 @@
 	"type": "symfony-bundle",
 	"description": "Symfony bundle. Image models for your documents.",
 	"keywords":['media','image'],
-     	"authors": [{
-                'name':	'Eugeny Fomin',
+     	"authors": [
+     		{     		
+     		'name':	'Eugeny Fomin',
                 'email': 'info@jeka.ru',
-                'homepage': 'http://jeka.ru'
-	}],
+                'homepage': 'http://jeka.ru'}
+	],
 	
     "require": {
         "php": ">=5.3.0",
