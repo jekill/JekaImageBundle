@@ -2,12 +2,12 @@
     "name": "jeka/image-bundle",
 	"type": "symfony-bundle",
 	"description": "Symfony bundle. Image models for your documents.",
-	"keywords":['media','image'],
+	"keywords":["media","image"],
      	"authors": [
      		{     		
-     		'name':	'Eugeny Fomin',
-                'email': 'info@jeka.ru',
-                'homepage': 'http://jeka.ru'}
+     		"name":	"Eugeny Fomin",
+                "email": "info@jeka.ru",
+                "homepage": "http://jeka.ru"}
 	],
 	
     "require": {
