@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.3.0",
 	"symfony/framework-bundle": "2.*",
-        "symfony/mongodb-odm-bundle": "dev-master"
+        "doctrine/mongodb-odm-bundle": "dev-master"
     },
     
     "autoload": {
