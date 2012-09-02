@@ -276,17 +276,17 @@ class Image
         return $this->getId() . '_' . $this->getCode() . '.' . $this->getExtension();
     }
 
-    /**
-     * eq: /home/jeka.ru/web/uploads/images/111_abcdef0193.jpg
-     * @return string
-     */
-    function realFileName()
-    {
-        $root_dir = __DIR__ . '/../../../../web';
-        $fname = $root_dir . $this->getSrc();
-        $fname = str_replace("/", DIRECTORY_SEPARATOR, $fname);
-        return $fname;
-    }
+//    /**
+//     * eq: /home/jeka.ru/web/uploads/images/111_abcdef0193.jpg
+//     * @return string
+//     */
+//    function realFileName()
+//    {
+//        $root_dir = __DIR__ . '/../../../../web';
+//        $fname = $root_dir . $this->getSrc();
+//        $fname = str_replace("/", DIRECTORY_SEPARATOR, $fname);
+//        return $fname;
+//    }
 
     public function getSrcImageDir()
     {
@@ -327,28 +327,6 @@ class Image
     }
 
 
-    /**
-     * Reload image info (width, height, filesize...)
-     * @return bool
-     */
-    public function reloadInfo()
-    {
-        $types = array("gif", "jpg", "png");
-        $info = array();
-
-        if (!($info = GetImageSize($this->realFileName())))
-            return false;
-
-        if (!isset($types[$info[2] - 1]))
-            return false;
-
-        $this->setWidth($info[0]);
-        $this->setHeight($info[1]);
-
-        $this->setSize(filesize($this->realFileName()));
-
-        return true;
-    }
 
 
 }

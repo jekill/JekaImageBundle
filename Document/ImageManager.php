@@ -8,12 +8,15 @@ class ImageManager
     private $class;
     private $dm;
     private $repository;
+    private $kernel;
 
-    public function __construct($class, \Doctrine\ODM\MongoDB\DocumentManager $dm)
+    public function __construct($class, \Doctrine\ODM\MongoDB\DocumentManager $dm,$kernel)
     {
         $this->class = $class;
         $this->dm = $dm;
         $this->repository = $dm->getRepository($this->class);
+        $this->kernel=$kernel;
+        //print get_class($kernel);exit;
     }
 
     public function getRepository()
@@ -38,6 +41,17 @@ class ImageManager
         return new $this->class;
     }
 
+    /**
+     * eq: /home/jeka.ru/web/uploads/images/111_abcdef0193.jpg
+     * @return string
+     */
+    public function realFileName(Image $image){
+        $root_dir = $this->kernel->getRootDir().'/../web';
+        $fname = $root_dir . $image->getSrc();
+        $fname = str_replace("/", DIRECTORY_SEPARATOR, $fname);
+        return $fname;
+    }
+
     public function createImageFromFile($file, $params = array())
     {
         $image = $this->createImage();
@@ -53,7 +67,7 @@ class ImageManager
         }
 
         $image->setMime($info['mime']);
-        $dir = dirname($image->realFileName());
+        $dir = dirname($this->realFileName($image));
         if (!file_exists($dir))
         {
             mkdir($dir,0755,true);
@@ -61,14 +75,13 @@ class ImageManager
 
         if (isset($params['remove_source']) && $params['remove_source'])
         {
-            rename($file,$image->realFileName());
+            rename($file,$this->realFileName($image));
         }
         else{
-            copy($file,$image->realFileName());
+            copy($file,$this->realFileName($image));
         }
-        //chmod($image->realFileName(),0644);
 
-        $image->reloadInfo();
+        $this->reloadInfo($image);
         $this->persist($image);
         return $image;
     }
@@ -93,11 +106,34 @@ class ImageManager
         $this->dm->remove($image);
         $this->flush();
 
-        if (file_exists($image->realFileName()))
+        if (file_exists($this->realFileName($image)))
         {
-            @unlink($image->realFileName());
+            @unlink($this->realFileName($image));
         }
     }
 
+
+    /**
+     * Reload image info (width, height, filesize...)
+     * @return bool
+     */
+    public function reloadInfo($image)
+    {
+        $types = array("gif", "jpg", "png");
+        $info = array();
+
+        if (!($info = GetImageSize($this->realFileName($image))))
+            return false;
+
+        if (!isset($types[$info[2] - 1]))
+            return false;
+
+        $image->setWidth($info[0]);
+        $image->setHeight($info[1]);
+
+        $image->setSize(filesize($this->realFileName($image)));
+
+        return true;
+    }
 
 }
