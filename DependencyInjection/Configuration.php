@@ -17,8 +17,22 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('jeka_image');
+
+        $supportedDrivers = array('orm', 'mongodb');
+        $treeBuilder      = new TreeBuilder();
+        $rootNode         = $treeBuilder->root('jeka_image');
+        $rootNode
+            ->children()
+                ->scalarNode('db_driver')
+                    ->validate()
+                       ->ifNotInArray($supportedDrivers)
+                       ->thenInvalid('The driver %s is not supported. Please choose one of '.json_encode($supportedDrivers))
+                    ->end()
+                    ->cannotBeOverwritten()
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+            ->end();
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <mapped-superclass name="Jeka\ImageBundle\Document\Image" collection="fos_user_user">
+        <field name="width" fieldName="width" type="int" />
+        <field name="height" fieldName="height" type="int" />
+        <field name="code" fieldName="code" type="string" />
+        <field name="mime" fieldName="mime" type="string" />
+        <field name="size" fieldName="size" type="int" />
+        <field name="parentDir" fieldName="parent_dir" type="string" />
+        <field name="extension" fieldName="extension" type="string" />
+        <field name="alt" fieldName="alt" type="string" />
+        <field name="pos" fieldName="pos" type="int" />
+        <field name="createdAt" column="created_at" type="date"/>
+
+        <indexes>
+            <index unique="true" dropDups="true">
+                <key name="code" order="asc" />
+                <option name="safe" value="true" />
+            </index>
+            <index>
+                <key name="pos" order="desc" />
+            </index>
+        </indexes>
+
+
+    </mapped-superclass>
+
+</doctrine-mongo-mapping>
