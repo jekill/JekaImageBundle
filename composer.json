@@ -1,23 +1,23 @@
 {
     "name": "jeka/image-bundle",
-	"type": "symfony-bundle",
-	"description": "Symfony bundle. Image models for your documents.",
-	"keywords":["media","image"],
-     	"authors": [
-     		{     		
-     		"name":	"Eugeny Fomin",
-                "email": "info@jeka.ru",
-                "homepage": "http://jeka.ru"}
-	],
-	
+    "type": "symfony-bundle",
+    "description": "Symfony bundle. Image models for your documents.",
+    "keywords": ["media", "image"],
+    "authors": [
+        {
+            "name": "Eugeny Fomin",
+            "email": "info@jeka.ru",
+            "homepage": "http://jeka.ru"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
-	"symfony/framework-bundle": "2.*",
-        "doctrine/mongodb-odm-bundle": "dev-master"
+        "symfony/framework-bundle": "2.*"
     },
-    
     "autoload": {
-        "psr-0": { "Jeka\\ImageBundle": "" }
+        "psr-0": {
+            "Jeka\\ImageBundle": ""
+        }
     },
     "target-dir": "Jeka/ImageBundle"
 }
