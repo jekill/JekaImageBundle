@@ -44,7 +44,7 @@ class AbstractImage implements ImageInterface
     /**
      * @var string
      */
-    protected $alt;
+    protected $alt='';
 
     /**
      * value for 'order by'

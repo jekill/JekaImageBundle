@@ -5,14 +5,14 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <mapped-superclass name="Jeka\ImageBundle\Entity\Image">
-        <field name="width" column="width" type="integer" />
-        <field name="height" column="height" type="integer" />
+        <field name="width" column="width" type="integer" nullable="true"/>
+        <field name="height" column="height" type="integer" nullable="true"/>
         <field name="code" column="code" type="string" length="64" unique="true" />
         <field name="mime" column="mime" type="string" length="10" />
-        <field name="size" column="size" type="integer" />
+        <field name="size" column="size" type="integer" nullable="true"/>
         <field name="parentDir" column="parent_dir" type="string" length="255"/>
         <field name="extension" column="extension" type="string" length="4"/>
-        <field name="alt" column="alt" type="string" length="255"/>
+        <field name="alt" column="alt" type="string" length="255" nullable="true"/>
         <field name="pos" column="pos" type="integer" nullable="false"/>
         <field name="createdAt" column="created_at" type="datetime" nullable="true" />
     </mapped-superclass>
