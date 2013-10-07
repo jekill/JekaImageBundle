@@ -29,6 +29,6 @@ class JekaImageExtension extends Extension
             $loader->load(sprintf('%s_params.xml', $config['db_driver']));
         }
 
-
+        $container->setParameter('jeka.image.class', $config['image_class']);
     }
 }

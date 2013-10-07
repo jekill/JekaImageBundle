@@ -64,8 +64,9 @@ class ImageManager implements ImageManagerInterface
         if (isset($params['parent_dir'])) {
             $image->setParentDir($params['parent_dir']);
         }
-        $this->persist($image);
         $image->setCode(rand(0, 99999999));
+
+        $this->update($image,true);
         $info = @getimagesize($file);
         if (!$info) {
             return null;
@@ -84,22 +85,23 @@ class ImageManager implements ImageManagerInterface
         }
 
         $this->reloadInfo($image);
-        $this->persist($image);
+        $this->update($image, true);
 
         return $image;
     }
 
-    public function persist($image, $flush = true)
+
+    public function update($image, $flush)
     {
         $this->objectManager->persist($image);
         if ($flush) {
-            $this->flush();
+            $this->flush($image);
         }
     }
 
-    public function flush()
+    public function flush($object = null)
     {
-        $this->objectManager->flush();
+        $this->objectManager->flush($object);
     }
 
 

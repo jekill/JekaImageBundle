@@ -1,14 +1,13 @@
 <?php
 /**
-
  * User: Eugeny Fomin <info@jeka.ru>
  * Date: 22.04.13
  */
 
 namespace Jeka\ImageBundle\Model;
 
-
-interface ImageManagerInterface {
+interface ImageManagerInterface
+{
 
     /**
      * @param $id
@@ -30,9 +29,9 @@ interface ImageManagerInterface {
 
     public function createImageFromFile($file, $params = array());
 
-    public function persist($image, $flush = true);
+    public function update($image, $flush);
 
-    public function flush();
+    public function flush($entity = null);
 
     public function remove(ImageInterface $image);
 

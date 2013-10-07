@@ -14,10 +14,10 @@ http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
         <field name="extension" fieldName="extension" type="string" />
         <field name="alt" fieldName="alt" type="string" />
         <field name="pos" fieldName="pos" type="int" />
-        <field name="createdAt" column="created_at" type="date"/>
+        <field name="createdAt" fieldName="created_at" type="date"/>
 
         <indexes>
-            <index unique="true" dropDups="true">
+            <index unique="true" drop-dups="true">
                 <key name="code" order="asc" />
                 <option name="safe" value="true" />
             </index>
